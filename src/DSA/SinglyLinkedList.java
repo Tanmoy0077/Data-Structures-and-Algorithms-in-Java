@@ -1,12 +1,12 @@
 package DSA;
 
-// * Node Structure for the LinkedList
+// * LinkedNode Structure for the LinkedList
 
-class Node {
+class LinkedNode {
     int data;
-    Node next;
+    LinkedNode next;
 
-    Node(int data) {
+    LinkedNode(int data) {
         this.data = data;
         this.next = null;
     }
@@ -14,7 +14,7 @@ class Node {
 
 class MyLinkedList {
 
-    Node head; // Head of the linked list
+    LinkedNode head; // Head of the linked list
 
     MyLinkedList() {
         this.head = null;
@@ -23,18 +23,18 @@ class MyLinkedList {
     // Add element at the end
     void addEnd(int data) {
         if (head == null) {
-            head = new Node(data);
+            head = new LinkedNode(data);
         } else {
-            Node temp = head;
+            LinkedNode temp = head;
             while (temp.next != null)
                 temp = temp.next;
-            temp.next = new Node(data);
+            temp.next = new LinkedNode(data);
         }
     }
 
     // Add element at the begining
     void addBegin(int data) {
-        Node newNode = new Node(data);
+        LinkedNode newNode = new LinkedNode(data);
         newNode.next = head;
         head = newNode;
     }
@@ -46,7 +46,7 @@ class MyLinkedList {
         } else if (head.next == null) {
             head = null;
         } else {
-            Node temp = head, prev = head;
+            LinkedNode temp = head, prev = head;
             while (temp.next != null) {
                 prev = temp;
                 temp = temp.next;
@@ -71,13 +71,13 @@ class MyLinkedList {
         if (head == null) {
             System.out.println("List Empty");
         } else {
-            Node prev = head, curr = head.next, next;
+            LinkedNode prev = head, curr = head.next, next;
             prev.next = null; // Set end of the linked list
             while (curr != null) {
-                next = curr.next; // Get hold of the next node
-                curr.next = prev; // Make the current node point towards previous
-                prev = curr; // Move the previous node
-                curr = next; // Move the current node
+                next = curr.next; // Get hold of the next LinkedNode
+                curr.next = prev; // Make the current LinkedNode point towards previous
+                prev = curr; // Move the previous LinkedNode
+                curr = next; // Move the current LinkedNode
             }
             head = prev; // Set the head pointer towards the previous item
         }
@@ -88,19 +88,19 @@ class MyLinkedList {
         if (head == null) {
             System.out.println("List Empty");
         } else {
-            Node curr = head.next;
+            LinkedNode curr = head.next;
             head.next = null;
             switchLink(head, curr);
         }
     }
 
     // Recursive function for reversing the linked list
-    private void switchLink(Node prev, Node curr) {
+    private void switchLink(LinkedNode prev, LinkedNode curr) {
         if (curr == null) {
             head = prev;
             return;
         }
-        Node next = curr.next;
+        LinkedNode next = curr.next;
         curr.next = prev;
         switchLink(curr, next);
     }
@@ -109,7 +109,7 @@ class MyLinkedList {
     public String toString() {
         StringBuilder result = new StringBuilder();
         result.append("[");
-        Node temp = head;
+        LinkedNode temp = head;
         while (temp != null) {
             result.append(temp.data + ", ");
             temp = temp.next;
@@ -120,7 +120,7 @@ class MyLinkedList {
 
     // Sorted insert
     void sortedInsert(int data) {
-        Node curr = head, prev = head;
+        LinkedNode curr = head, prev = head;
         while (curr != null) {
             if (data < curr.data)
                 break;
@@ -132,7 +132,7 @@ class MyLinkedList {
         } else if (curr == head) {
             addBegin(data);
         } else {
-            Node newNode = new Node(data);
+            LinkedNode newNode = new LinkedNode(data);
             newNode.next = curr;
             prev.next = newNode;
         }
@@ -144,13 +144,13 @@ class MyLinkedList {
             System.out.println("List Empty");
             return;
         }
-        Node slow = head, fast = head;
+        LinkedNode slow = head, fast = head;
         while (fast != null && fast.next != null) { // For even elements fast is null otherwise fast.next is null
             slow = slow.next;
             fast = fast.next.next;
         }
 
-        Node newNode = new Node(data);
+        LinkedNode newNode = new LinkedNode(data);
         newNode.next = slow.next;
         slow.next = newNode;
     }
@@ -160,7 +160,7 @@ class MyLinkedList {
 public class SinglyLinkedList {
     // Adds the 2nd linked list at end of the 1st linked list
     public static void joinLinkedList(MyLinkedList l1, MyLinkedList l2) {
-        Node curr = l1.head;
+        LinkedNode curr = l1.head;
         while (curr.next != null)
             curr = curr.next;
         curr.next = l2.head;
