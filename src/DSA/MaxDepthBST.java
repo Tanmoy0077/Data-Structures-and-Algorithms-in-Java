@@ -1,15 +1,4 @@
 package DSA;
-class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
-    TreeNode(int val){
-        this.val = val;
-        this.left = null;
-        this.right = null;
-    }
-
-}
 public class MaxDepthBST {
     public static int solver(TreeNode root){
         if(root == null)

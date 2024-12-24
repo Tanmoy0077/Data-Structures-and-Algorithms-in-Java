@@ -1,16 +1,5 @@
 package DSA;
 
-
-class Node{
-    int val;
-    Node next;
-    Node(){}
-    Node(int val){
-        this.val = val;
-        this.next = null;
-    }
-}
-
 public class DeleteMiddle {
     public static Node solver(Node head){
         Node fast = head, slow = head, prev = head;
